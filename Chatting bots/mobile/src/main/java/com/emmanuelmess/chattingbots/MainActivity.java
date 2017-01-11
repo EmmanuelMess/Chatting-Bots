@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ProgressBar;
@@ -30,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 	private static final int SCROLL_ERROR_MARGIN = TEXT_HEIGHT*6;
 
 	private ChatterBotSession bot1session, bot2session;
-	private AsyncTask t;
 	private ScrollView s;
 	private TextView bots;
 	private ProgressBar progressBar;
@@ -70,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
 					(new AsyncTask<Void, String, Void>() {
 						private int n = 0;
-						private boolean loading = true;
-
 						@Override
 						protected Void doInBackground(Void... params) {
 							String s = "Hi";
@@ -118,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 										else if(equal(values[1], SET_PROGRESSBAR_GONE))
 											progressBar.setVisibility(View.GONE);
 									}else {
-										int oldHeight = bots.getHeight();
 										bots.append(Integer.toHexString(n++).toUpperCase() + " "
 												+ values[0].replace("  ", " ").replace("\t", " "));
 										if(s.getScrollY() + s.getHeight()
@@ -140,28 +134,6 @@ public class MainActivity extends AppCompatActivity {
 	public void onPause() {
 		super.onPause();
 		stopped = true;
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.menu_main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-
-		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
-			return true;
-		}
-
-		return super.onOptionsItemSelected(item);
 	}
 
 	public static boolean equal(Object o1, Object o2) {

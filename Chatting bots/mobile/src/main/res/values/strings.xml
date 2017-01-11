@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Xat</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Chatting Bots</string>
     <string name="en_garde">En garde</string>
 </resources>
